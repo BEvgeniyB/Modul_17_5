@@ -1,20 +1,26 @@
 from fastapi import FastAPI
-from routers.task import router as task_router
-from routers.user import router as user_router
+from app.routers import user,task
 
 app = FastAPI()
 
-@app.get("/")
+@app.get("/welcome")
 async def welcome():
     return {"message": "Welcome to Taskmanager"}
 
-app.include_router(task_router)
-app.include_router(user_router)
+app.include_router(user.router)
+app.include_router(task.router)
 
 
 
 
 if __name__ == '__main__':
-   pass
+    import pkgutil
+    import sys
+    search_path = ['.']  # Используйте None, чтобы увидеть все модули, импортируемые из sys.path
+    all_modules = [x[1] for x in pkgutil.iter_modules(path=search_path)]
+    print(all_modules)
+    print(sys.path)
+
+
 
 

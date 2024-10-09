@@ -1,8 +1,7 @@
 from app.backend.db import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-
-
+from app.models import *
 from sqlalchemy.schema import CreateTable
 
 
@@ -16,6 +15,6 @@ class User(Base):
     age = Column(Integer)
     slug = Column(String, unique=True, index=True)
 
-    task = relationship(argument="Task", back_populates="User")
+    task = relationship(argument="Task", back_populates="user")
 
-print(CreateTable(User.__table__))
+#print(CreateTable(User.__table__))
